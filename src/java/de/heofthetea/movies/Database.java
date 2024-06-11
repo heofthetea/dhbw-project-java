@@ -40,6 +40,9 @@ public final class Database {
         return instance;
     }
 
+
+    
+
     // -------------------------------------------------------------------------------------------------
     // Inserting/Adding Operations #OOPhell
     // Encapsulation sadly brings along with it a lot of boilerplate and redundant code. But hey, it's easy to use :)

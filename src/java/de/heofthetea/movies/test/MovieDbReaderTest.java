@@ -2,8 +2,13 @@ package de.heofthetea.movies.test;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+
+import javax.xml.crypto.Data;
+
 import de.heofthetea.movies.MovieDbReader;
 import de.heofthetea.movies.entities.*;
+import de.heofthetea.movies.Database;
 
 
 public class MovieDbReaderTest {
@@ -53,6 +58,31 @@ public class MovieDbReaderTest {
         Director director = MovieDbReader.readDirector(line);
         assertEquals(27982, director.getId());
         assertEquals("Paul Wegener", director.getName());
+    }
+
+    /*
+     * GIVEN a database with a list of actors containing a duplicate
+     * WHEN the Database is passed to the removeDuplicates method
+     * THEN the list of actors does not contain duplicates anymore.
+     * 
+     * Okay sometimes this GIVEN-WHEN-THEN thing might not be as useful as it seems
+     */
+    @Test
+    public void removeDuplicatesTest() {
+        Database db = Database.getInstance();
+
+        db.setActors(
+            new HashMap<Integer, Actor>() {{
+                put(1, new Actor(1, "John Doe"));
+                put(2, new Actor(2, "Jane Doe"));
+                put(3, new Actor(3, "John Doe"));
+            }}
+        );
+
+        MovieDbReader.removeDuplicates(db);
+
+        assertEquals(2, db.getActors().size());
+
     }
 
     

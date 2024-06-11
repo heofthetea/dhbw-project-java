@@ -3,6 +3,14 @@ package de.heofthetea.movies;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import de.heofthetea.movies.entities.*;
 
 /*
@@ -41,6 +49,17 @@ public class MovieDbReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void removeDuplicates(Database db) {
+        Collection<Actor> noDups = db.getActors().values();
+        Stream<Actor> nds = noDups.stream();
+        nds = nds.distinct();
+        
+        Set<Actor> asdf = nds
+            .collect(Collectors.toSet());
+        System.out.println(noDups.size());
+        // db.setActors(noDups);
     }
 
 

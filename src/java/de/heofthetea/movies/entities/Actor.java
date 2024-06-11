@@ -16,6 +16,7 @@ public class Actor {
      */
     @Override
     public boolean equals(Object obj) {
+        System.out.println("Actor equals");
         if (obj == this) {
             return true;
         }
@@ -27,6 +28,12 @@ public class Actor {
         return actor.id == this.id ||
                 actor.name.equals(this.name);
     }
+
+    @Override
+    public int hashCode() {
+        return this.id;
+    }
+
 
 
 
