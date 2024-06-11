@@ -8,10 +8,10 @@ public class Movie {
     // Since the date is stored in yyyy-mm-dd, we can afford to store it as a
     // string, as alphabetical sorting results in the dates being in correct order.
     private String released; 
-    private int imdbVotes;
-    private double imdbRating;
+    private Integer imdbVotes;
+    private Double imdbRating;
 
-    public Movie(int id, String title, String plot, String genre, String released, int imdbVotes, double imdbRating) {
+    public Movie(int id, String title, String plot, String genre, String released, Integer imdbVotes, Double imdbRating) {
         this.id = id;
         this.title = title;
         this.plot = plot;

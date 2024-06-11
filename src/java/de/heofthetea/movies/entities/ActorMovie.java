@@ -4,7 +4,7 @@ public class ActorMovie {
     private final Actor actor;
     private final Movie movie;
 
-    public ActorMovie(int id, Actor actor, Movie movie) {
+    public ActorMovie(Actor actor, Movie movie) {
         this.actor = actor;
         this.movie = movie;
     }
