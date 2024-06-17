@@ -52,14 +52,11 @@ public class MovieDbReader {
     }
 
     public static void removeDuplicates(Database db) {
-        Collection<Actor> noDups = db.getActors().values();
-        Stream<Actor> nds = noDups.stream();
-        nds = nds.distinct();
-        
-        Set<Actor> asdf = nds
-            .collect(Collectors.toSet());
-        System.out.println(noDups.size());
-        // db.setActors(noDups);
+        db.setActors(
+            db.getActors().values().stream()
+                .distinct()
+                .collect(Collectors.toMap(Actor::getId, actor -> actor))
+        );
     }
 
 

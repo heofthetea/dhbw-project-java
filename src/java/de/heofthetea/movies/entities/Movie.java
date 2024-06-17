@@ -1,5 +1,7 @@
 package de.heofthetea.movies.entities;
 
+import java.util.Objects;
+
 public class Movie {
     private final int id;
     private String title;
@@ -45,10 +47,13 @@ public class Movie {
 
         return  movie.title.equals(this.title) &&
                 movie.plot.equals(this.plot) &&
-                movie.genre.equals(this.genre) &&
-                movie.released.equals(this.released) &&
-                movie.imdbVotes == this.imdbVotes &&
-                movie.imdbRating == this.imdbRating;
+                movie.released.equals(this.released);
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, plot, released);
     }
 
 

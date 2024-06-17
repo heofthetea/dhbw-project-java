@@ -40,12 +40,10 @@ public final class Database {
         return instance;
     }
 
-
-    
-
     // -------------------------------------------------------------------------------------------------
     // Inserting/Adding Operations #OOPhell
-    // Encapsulation sadly brings along with it a lot of boilerplate and redundant code. But hey, it's easy to use :)
+    // Encapsulation sadly brings along with it a lot of boilerplate and redundant
+    // code. But hey, it's easy to use :)
 
     /**
      * Adds an Actor to the database.
@@ -55,21 +53,25 @@ public final class Database {
      * @param actor
      */
     public void add(Actor actor) {
-        this.actors.put(actor.getId(), actor);
+        if (!actors.containsKey(actor.getId())) {
+            actors.put(actor.getId(), actor);
+        }
     }
 
     /**
      * Adds a Movie to the database.
      * The id of each Movie object is extracted from the passed object, and placed
      * as the key for the respective hashmap.
-     * (Btw Jonathan I'm sorry, but if I want to have nice method documentation
+     * (Btw Johannes I'm sorry, but if I want to have nice method documentation
      * preview in my IDE, I sadly need to duplicate the comments just as I do the
      * methods for overloading.)
      * 
      * @param actorMovie
      */
     public void add(Movie movie) {
-        this.movies.put(movie.getId(), movie);
+        if (!movies.containsKey(movie.getId())) {
+            movies.put(movie.getId(), movie);
+        }
     }
 
     /**
@@ -80,12 +82,15 @@ public final class Database {
      * @param director
      */
     public void add(Director director) {
-        this.directors.put(director.getId(), director);
+        if(!movies.containsKey(director.getId())) {
+            directors.put(director.getId(), director);
+        }
     }
 
     public void add(ActorMovie am) {
         this.actsInMovies.put(am.hashCode(), am);
     }
+
     public void add(DirectorMovie dm) {
         this.directsMovies.put(dm.hashCode(), dm);
     }

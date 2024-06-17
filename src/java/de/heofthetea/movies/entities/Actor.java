@@ -31,7 +31,7 @@ public class Actor {
 
     @Override
     public int hashCode() {
-        return this.id;
+        return name.hashCode();
     }
 
 

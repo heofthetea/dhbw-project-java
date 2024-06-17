@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.HashMap;
 
-import javax.xml.crypto.Data;
-
 import de.heofthetea.movies.MovieDbReader;
 import de.heofthetea.movies.entities.*;
 import de.heofthetea.movies.Database;
@@ -82,6 +80,7 @@ public class MovieDbReaderTest {
         MovieDbReader.removeDuplicates(db);
 
         assertEquals(2, db.getActors().size());
+        assertNotEquals(null, db.getActors().get(1));
 
     }
 
