@@ -1,0 +1,11 @@
+{
+    "configurations": [
+    {
+        "type": "java",
+        "name": "Launch with Arguments Prompt",
+        "request": "launch",
+        "mainClass": "",
+        "args": "hello"
+    }
+    ]
+}
