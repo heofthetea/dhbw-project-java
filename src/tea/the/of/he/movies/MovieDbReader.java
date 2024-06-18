@@ -1,6 +1,7 @@
 package tea.the.of.he.movies;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class MovieDbReader {
      * uses {@link #readEntity(int, String)} to handle the actual logic behind
      * converting each line from String to a Java Object.
      */
-    public static void readFromFile(String filePath) {
+    public static void readFromFile(String filePath){
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             int entity = -1;
@@ -41,6 +42,8 @@ public class MovieDbReader {
                 }
                 readEntity(entity, line);
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("Database file not found. Ensure it exists in both the root project folder, as well as in src.");
         } catch (IOException e) {
             e.printStackTrace();
         }

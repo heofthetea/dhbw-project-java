@@ -2,6 +2,8 @@ package tea.the.of.he.movies;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+
 import tea.the.of.he.movies.entities.Actor;
 import tea.the.of.he.movies.entities.Director;
 import tea.the.of.he.movies.entities.Movie;
@@ -43,6 +45,23 @@ public final class Database {
     public void destroy() {
         instance = null;
     }
+
+
+    //-------------------------------------------------------------------------------------------------
+    // Searching Operations
+    public List<Movie> getMovieByTitle(String title) {
+        return movies.values().stream()
+            .filter(m -> m.getTitle().contains(title))
+            .toList();
+    }
+
+    public List<Actor> getActorByName(String name) {
+        return actors.values().stream()
+            .filter(a -> a.getName().contains(name))
+            .toList();
+    }
+
+
 
     // -------------------------------------------------------------------------------------------------
     // Inserting/Adding Operations #OOPhell

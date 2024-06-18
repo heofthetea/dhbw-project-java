@@ -3,7 +3,7 @@ package tea.the.of.he.movies.entities;
 import java.util.Objects;
 
 public class Movie {
-    private final int id;
+    private final Integer id;
     private String title;
     private String plot;
     private String genre;
@@ -56,6 +56,14 @@ public class Movie {
         return Objects.hash(title, plot, released);
     }
 
+
+    @Override
+    public String toString() {
+        
+        return id.toString() + "  " + title + ":" + 
+            "\n\t - Plot: " + plot + "\n\t - Genre: " + genre + 
+            "\n\t - Released: " + released + "\n\t - IMDB Votes: " + imdbVotes + "\n\t - IMDB Rating: " + imdbRating + "\n";
+    }
 
 
 

@@ -1,7 +1,7 @@
 package tea.the.of.he.movies.entities;
 
 public class Actor {
-    private final int id;
+    private final Integer id;
     private String name;
 
     public Actor(int id, String name) {
@@ -33,7 +33,10 @@ public class Actor {
         return name.hashCode();
     }
 
-
+    @Override
+    public String toString() {
+        return id.toString() + " " + name;
+    }
 
 
 

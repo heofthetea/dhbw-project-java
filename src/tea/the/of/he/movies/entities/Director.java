@@ -1,7 +1,7 @@
 package tea.the.of.he.movies.entities;
 
 public class Director {
-    private final int id;
+    private final Integer id;
     private String name;
 
     public Director(int id, String name) {
@@ -44,5 +44,10 @@ public class Director {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return id.toString() + " " + name;
     }
 }
