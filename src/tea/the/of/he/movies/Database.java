@@ -155,6 +155,7 @@ public final class Database {
 
     // -------------------------------------------------------------------------------------------------
     // Getters and Setters
+    // These really only serve the purpose of easy testing. I might remove them later to have proper OOP encapsulation.
 
     public Map<Integer, Actor> getActors() {
         return this.actors;

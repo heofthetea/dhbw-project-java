@@ -5,5 +5,5 @@
     "java.project.referencedLibraries": [
         "lib/hamcrest-core-1.3.jar",
         "/home/heofthetea/DHBW/semester-2/java/movie-database/lib/junit-4.13.2.jar"
-    ],
+    ]
 }
