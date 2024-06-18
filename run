@@ -1,0 +1,4 @@
+#!/bin/sh
+
+javac -sourcepath src -d out src/tea/the/of/he/movies/Main.java
+java -cp out tea.the.of.he.movies.Main $@

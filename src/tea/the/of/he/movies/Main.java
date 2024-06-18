@@ -11,7 +11,7 @@ public class Main {
             System.out.println(arg);
         }
         
-        MovieDbReader.readFromFile("src/movieproject2024.db");
+        MovieDbReader.readFromFile("movieproject2024.db");
 
         System.out.println("Actors: " + db.getActors().size());
         System.out.println("Movies: " + db.getMovies().size());

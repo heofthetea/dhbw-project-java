@@ -1,9 +1,8 @@
-
-de/heofthetea/movies/entities/ActorMovie.java
-de/heofthetea/movies/entities/Actor.java
-de/heofthetea/movies/entities/Movie.java
-de/heofthetea/movies/entities/Director.java
-de/heofthetea/movies/entities/DirectorMovie.java
-de/heofthetea/movies/MovieDbReader.java
-de/heofthetea/movies/Main.java
-de/heofthetea/movies/Database.java
+tea/the/of/he/movies/entities/ActorMovie.java
+tea/the/of/he/movies/entities/Actor.java
+tea/the/of/he/movies/entities/Movie.java
+tea/the/of/he/movies/entities/Director.java
+tea/the/of/he/movies/entities/DirectorMovie.java
+tea/the/of/he/movies/MovieDbReader.java
+tea/the/of/he/movies/Main.java
+tea/the/of/he/movies/Database.java
