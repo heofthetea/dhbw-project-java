@@ -28,8 +28,8 @@ public class MovieDbReader {
      * uses {@link #readEntity(int, String)} to handle the actual logic behind
      * converting each line from String to a Java Object.
      */
-    public static void readFromFile(String filePath){
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+    public static void readFromFile(String path){
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line;
             int entity = -1;
             while ((line = reader.readLine()) != null) {

@@ -1,7 +1,6 @@
 package tea.the.of.he.movies;
 
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -67,16 +66,6 @@ public final class Database {
             .filter(am -> am.getActor().equals(actor))
             .map(ActorMovie::getMovie)
             .toList();
-
-
-        // List<Movie> movies = new ArrayList<Movie>();
-        // for (ActorMovie am : actsInMovies.values()) {
-        //     if (am.getActor().equals(actor)) {
-        //         movies.add(am.getMovie());
-        //     }
-        // }
-
-        // return movies;
     }
 
     public List<Actor> getActorsByMovie(Movie movie) {
