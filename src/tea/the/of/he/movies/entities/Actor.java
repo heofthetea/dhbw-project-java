@@ -1,5 +1,7 @@
 package tea.the.of.he.movies.entities;
 
+import java.util.Objects;
+
 public class Actor {
     private final Integer id;
     private String name;
@@ -24,13 +26,13 @@ public class Actor {
         }
         Actor actor = (Actor) obj;
 
-        return actor.id == this.id ||
+        return actor.id == this.id &&
                 actor.name.equals(this.name);
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return Objects.hash(id, name);
     }
 
     @Override

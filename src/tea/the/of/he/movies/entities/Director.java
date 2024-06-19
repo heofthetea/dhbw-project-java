@@ -1,5 +1,7 @@
 package tea.the.of.he.movies.entities;
 
+import java.util.Objects;
+
 public class Director {
     private final Integer id;
     private String name;
@@ -43,7 +45,7 @@ public class Director {
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return Objects.hash(id, name);
     }
 
     @Override

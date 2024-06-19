@@ -29,7 +29,7 @@ public class Main {
         System.out.println("---------------------------------------------------\n");
 
         String[] parameter = args[0].substring(2).split("=", 2); // remove the -- from the string
-
+        db.getMoviesByActor(db.getActorByName("McDowall").get(0));
 
         switch (parameter[0]) {
             case "filmsuche":
@@ -49,8 +49,8 @@ public class Main {
                 System.out.println("Valid arguments are: \n"
                     + "\t--filmsuche=<title: string | id: int> \n"
                     + "\t--schauspielersuche=<name: string | id: int> \n"
-                    + "\t--schauspielernetzwerk=<name: string | id: int> \n"
-                    + "\t--filmnetzwerk=<title: string | id: int> \n");
+                    + "\t--schauspielernetzwerk=<id: int> \n"
+                    + "\t--filmnetzwerk=<id: int> \n");
             
         }
 
@@ -81,36 +81,56 @@ public class Main {
 
     //TODO remove lingering comma
     public static void filmnetzwerk(Integer id) {
-        List<Actor> actors = db.getActorsByMovie(db.getMovies().get(id));
+        Movie query_movie = db.getMovies().get(id);
+        List<Actor> actors = db.getActorsByMovie(query_movie);
         if(actors.isEmpty()) {
             System.out.println("No actors found for movie with id '" + id + "':");
         } else {
             System.out.println("Movie network vor movie " + db.getMovies().get(id).getTitle() + ":\n");
             System.out.print("Schauspieler: ");
-            actors.stream().map(a -> a.getName() + ", ").forEach(System.out::print);
+            for (int i = 0; i < actors.size() - 1; i++) {
+                System.out.print(actors.get(i).getName() + ", ");
+            }
+            System.out.println(actors.get(actors.size() - 1).getName());
         }
         List<Movie> movies = new ArrayList<Movie>();
-        actors.forEach(a -> movies.addAll(db.getMoviesByActor(a)));
+        for(Actor actor : actors) {
+            movies.addAll(db.getMoviesByActor(actor));
+        }
+        movies = movies.stream().distinct().filter(m -> !m.equals(query_movie)).toList();
 
         System.out.print("\nFilme: ");
-        movies.stream().map(m -> m.getTitle() + ", ").distinct().forEach(System.out::print);
+        for (int i = 0; i < movies.size() - 1; i++) {
+            System.out.print(movies.get(i).getTitle() + ", ");
+        }
+        System.out.println(movies.get(movies.size() - 1).getTitle());
 
     }
 
     public static void schauspielernetzwerk(Integer id) {
-        List<Movie> movies = db.getMoviesByActor(db.getActors().get(id));
+        Actor query_actor = db.getActors().get(id);
+        List<Movie> movies = db.getMoviesByActor(query_actor);
         if(movies.isEmpty()) {
             System.out.println("No movies found for actor with id '" + id + "':");
         } else {
             System.out.println("Actor network for actor " + db.getActors().get(id).getName() + ":\n");
             System.out.print("Filme: ");
-            movies.stream().map(m -> m.getTitle() + ", ").forEach(System.out::print);
+            for (int i = 0; i < movies.size() - 1; i++) {
+                System.out.print(movies.get(i).getTitle() + ", ");
+            }
+            System.out.println(movies.get(movies.size() - 1).getTitle());
         }
         List<Actor> actors = new ArrayList<Actor>();
-        movies.forEach(m -> actors.addAll(db.getActorsByMovie(m)));
+        for(Movie movie : movies) {
+            actors.addAll(db.getActorsByMovie(movie));
+        }
+        actors = actors.stream().distinct().filter(a -> !a.equals(query_actor)).toList();
 
-        System.out.print("\nSchauspieler:" );
-        actors.stream().map(a -> a.getName() + ", ").distinct().forEach(System.out::print);
+        System.out.print("\nSchauspieler: ");
+        for (int i = 0; i < actors.size() - 1; i++) {
+            System.out.print(actors.get(i).getName() + ", ");
+        }
+        System.out.println(actors.get(actors.size() - 1).getName());
     }
 
 
