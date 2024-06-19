@@ -61,6 +61,20 @@ public final class Database {
             .toList();
     }
 
+    public List<Movie> getMoviesByActor(Actor actor) {
+        return actsInMovies.values().stream()
+            .filter(am -> am.getActor().equals(actor))
+            .map(ActorMovie::getMovie)
+            .toList();
+    }
+
+    public List<Actor> getActorsByMovie(Movie movie) {
+        return actsInMovies.values().stream()
+            .filter(am -> am.getMovie().equals(movie))
+            .map(ActorMovie::getActor)
+            .toList();
+    }
+
 
 
     // -------------------------------------------------------------------------------------------------
