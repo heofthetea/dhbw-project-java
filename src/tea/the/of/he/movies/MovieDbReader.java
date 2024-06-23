@@ -43,7 +43,7 @@ public class MovieDbReader {
                 readEntity(entity, line);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Database file not found. Ensure it exists in both the root project folder, as well as in src.");
+            throw new RuntimeException("Database file not found. Ensure it exists in both the root project folder, as well as in src.");
         } catch (IOException e) {
             e.printStackTrace();
         }
