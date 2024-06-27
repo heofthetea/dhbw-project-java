@@ -49,15 +49,31 @@ public final class Database {
 
     //-------------------------------------------------------------------------------------------------
     // Searching Operations
-    public List<Movie> getMovieByTitle(String title) {
+
+
+    /**
+     * Searches for all movies based on a title String
+     * The case of the string is ignored, meaning 'test' will match a query string 'Test'.
+     * 
+     * @param title The title of the movie to search for
+     * @return List of all matches
+     */
+    public List<Movie> getMoviesByTitle(String title) {
         return movies.values().stream()
-            .filter(m -> m.getTitle().contains(title))
+            .filter(m -> m.getTitle().toLowerCase().contains(title.toLowerCase()))
             .toList();
     }
 
-    public List<Actor> getActorByName(String name) {
+    /**
+     * Searches for all actors based on a name String
+     * The case of the string is ignored, meaning 'test' will match a query string 'Test'.
+     * 
+     * @param name The name of the actor to search for
+     * @return List of all matches
+     */
+    public List<Actor> getActorsByName(String name) {
         return actors.values().stream()
-            .filter(a -> a.getName().contains(name))
+            .filter(a -> a.getName().toLowerCase().contains(name.toLowerCase()))
             .toList();
     }
 

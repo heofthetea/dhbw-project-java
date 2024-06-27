@@ -28,7 +28,7 @@ public class Main {
         System.out.println("---------------------------------------------------\n");
 
         String[] parameter = args[0].substring(2).split("=", 2); // remove the -- from the string
-        db.getMoviesByActor(db.getActorByName("McDowall").get(0));
+        db.getMoviesByActor(db.getActorsByName("McDowall").get(0));
 
         switch (parameter[0]) {
             case "filmsuche":
@@ -55,7 +55,7 @@ public class Main {
     }
 
     public static void filmsuche(String title) {
-        List<Movie> movies = db.getMovieByTitle(title);
+        List<Movie> movies = db.getMoviesByTitle(title);
         if (movies.isEmpty()) {
             System.out.println("No movies found with key word '" + title + "':");
         } else {
@@ -65,7 +65,7 @@ public class Main {
     }
 
     public static void schauspielersuche(String name) {
-        List<Actor> actors = db.getActorByName(name);
+        List<Actor> actors = db.getActorsByName(name);
         if (actors.isEmpty()) {
             throw new RuntimeException("No actors found with key word '" + name + "':");
         } else {
