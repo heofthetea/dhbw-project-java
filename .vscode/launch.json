@@ -5,8 +5,7 @@
         "name": "Launch with Arguments Prompt",
         "request": "launch",
         "mainClass": "",
-        "args": "--schauspielersuche=Will\\ Smith"
-        // "args": "--filmsuche=Star\\ Wars"
+        "args": "--filmnetzwerk=2047"
     }
     ]
 }
