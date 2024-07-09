@@ -12,10 +12,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MovieDbReader.readFromFile("movieproject2024.db");
+        MovieDbReader.readFromFile("../movieproject2024.db");
 
-        for (String arg : args) {
-            System.out.println(arg);
+        if (args.length < 1) {
+            System.out.println("No arguments provided. Exiting...");
+            printHelp(args);
+            return;
         }
 
         System.out.println("Successfully read database file:");
@@ -28,7 +30,6 @@ public class Main {
         System.out.println("---------------------------------------------------\n");
 
         String[] parameter = args[0].substring(2).split("=", 2); // remove the -- from the string
-        db.getMoviesByActor(db.getActorsByName("McDowall").get(0));
 
         switch (parameter[0]) {
             case "filmsuche":
@@ -44,12 +45,7 @@ public class Main {
                 schauspielernetzwerk(Integer.parseInt(parameter[1]));
                 break;
             default:
-                System.out.println("Invalid argument: " + args[0]);
-                System.out.println("Valid arguments are: \n"
-                        + "\t--filmsuche=<title: string | id: int> \n"
-                        + "\t--schauspielersuche=<name: string | id: int> \n"
-                        + "\t--schauspielernetzwerk=<id: int> \n"
-                        + "\t--filmnetzwerk=<id: int> \n");
+                printHelp(args);
 
         }
     }
@@ -164,6 +160,16 @@ public class Main {
             System.out.print(actors.get(i).getName() + ", ");
         }
         System.out.println(actors.get(actors.size() - 1).getName());
+    }
+
+    private static void printHelp(String[] args) {
+        if(args.length > 0)
+            System.out.println("Invalid argument: " + args[0]);
+        System.out.println("Valid arguments are: \n"
+                + "\t--filmsuche=<title: string | id: int> \n"
+                + "\t--schauspielersuche=<name: string | id: int> \n"
+                + "\t--schauspielernetzwerk=<id: int> \n"
+                + "\t--filmnetzwerk=<id: int> \n");
     }
 
 }

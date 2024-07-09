@@ -67,6 +67,4 @@ public class Actor {
         this.name = name;
     }
 
-
-
 }

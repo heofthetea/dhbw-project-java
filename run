@@ -1,7 +1,25 @@
 #!/bin/sh
+rm -rf out
+
+if [ "$1" = "--help" ]; then
+    printf "Usage: ./run [args]\n"
+    printf "Run without arguments for help regarding the actual java class.\n\n"
+    printf  \
+"Wrapper script to run the java project, running the project with any provided arguments, as well as the ProjektTester.
+I have spent ages trying to understand javas filesystem abstraction, in the end I found some configuration that somehow worked.
+As I do not intend vor this to not work on your machine, this is a script which compiles the project and runs it.
+\nNote that ProjektTester.java is also already run.\n"
+
+    exit 0
+fi
+
+
 
 if [ ! -d out ]; then
     javac -sourcepath src -d out src/tea/the/of/he/movies/Main.java
+    javac -sourcepath src -d out src/tea/the/of/he/movies/test/ProjektTester.java
 fi
 
-java -cp out tea.the.of.he.movies.Main $@ 
+java -cp out tea.the.of.he.movies.Main $@
+
+java -cp out tea.the.of.he.movies.test.ProjektTester

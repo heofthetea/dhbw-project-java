@@ -13,7 +13,7 @@ import tea.the.of.he.movies.entities.DirectorMovie;
 /*
  * SINGLETON Class which serves as a central node to manage every aspect of the database.
  * Here, Lists of all entities and relations are stored, and methods for each necessary operation are provided,
- * to keep it as similar to a real databese as possible, which you should have used in the first place.
+ * to keep it as similar to a real database as possible, which you should have used in the first place.
  */
 public final class Database {
     private static Database instance;
@@ -41,7 +41,7 @@ public final class Database {
         }
         return instance;
     }
-    
+
     public void destroy() {
         instance = null;
     }
@@ -54,43 +54,32 @@ public final class Database {
     /**
      * Searches for all movies based on a title String
      * The case of the string is ignored, meaning 'test' will match a query string 'Test'.
-     * 
+     *
      * @param title The title of the movie to search for
      * @return List of all matches
      */
     public List<Movie> getMoviesByTitle(String title) {
-        return movies.values().stream()
-            .filter(m -> m.getTitle().toLowerCase().contains(title.toLowerCase()))
-            .toList();
+        return movies.values().stream().filter(m -> m.getTitle().toLowerCase().contains(title.toLowerCase())).toList();
     }
 
     /**
      * Searches for all actors based on a name String
      * The case of the string is ignored, meaning 'test' will match a query string 'Test'.
-     * 
+     *
      * @param name The name of the actor to search for
      * @return List of all matches
      */
     public List<Actor> getActorsByName(String name) {
-        return actors.values().stream()
-            .filter(a -> a.getName().toLowerCase().contains(name.toLowerCase()))
-            .toList();
+        return actors.values().stream().filter(a -> a.getName().toLowerCase().contains(name.toLowerCase())).toList();
     }
 
     public List<Movie> getMoviesByActor(Actor actor) {
-        return actsInMovies.values().stream()
-            .filter(am -> am.getActor().equals(actor))
-            .map(ActorMovie::getMovie)
-            .toList();
+        return actsInMovies.values().stream().filter(am -> am.actor().equals(actor)).map(ActorMovie::movie).toList();
     }
 
     public List<Actor> getActorsByMovie(Movie movie) {
-        return actsInMovies.values().stream()
-            .filter(am -> am.getMovie().equals(movie))
-            .map(ActorMovie::getActor)
-            .toList();
+        return actsInMovies.values().stream().filter(am -> am.movie().equals(movie)).map(ActorMovie::actor).toList();
     }
-
 
 
     // -------------------------------------------------------------------------------------------------
@@ -102,7 +91,7 @@ public final class Database {
      * Adds an Actor to the database.
      * The id of each actor object is extracted from the passed object, and placed
      * as the key for the respective hashmap.
-     * 
+     *
      * @param actor
      */
     public void add(Actor actor) {
@@ -121,7 +110,7 @@ public final class Database {
      * (Btw Johannes I'm sorry, but if I want to have nice method documentation
      * preview in my IDE, I sadly need to duplicate the comments just as I do the
      * methods for overloading.)
-     * 
+     *
      * @param movie
      */
     public void add(Movie movie) {
@@ -136,11 +125,11 @@ public final class Database {
      * Adds a Director to the database.
      * The id of each Director object is extracted from the passed object, and
      * placed as the key for the respective hashmap.
-     * 
+     *
      * @param director
      */
     public void add(Director director) {
-        if(movies.containsKey(director.getId())) {
+        if (movies.containsKey(director.getId())) {
             System.out.println("Duplicate Director: " + director.getId());
             return;
         }
@@ -148,35 +137,33 @@ public final class Database {
     }
 
     /**
-     * 
      * @param am ActorMovie relation
      */
     public void add(ActorMovie am) {
         if (actsInMovies.containsKey(am.hashCode())) {
-            System.out.println(am.getActor().getName() + " is already in " + am.getMovie().getTitle());
+            System.out.println(am.actor().getName() + " is already in " + am.movie().getTitle());
             return;
         }
 
 
-        if(!(actors.containsKey(am.getActor().getId()) && movies.containsKey(am.getMovie().getId()))) {
-            System.out.println(am.getActor().getName() + " or " + am.getMovie().getTitle() + " is not in the database.");
+        if (!(actors.containsKey(am.actor().getId()) && movies.containsKey(am.movie().getId()))) {
+            System.out.println(am.actor().getName() + " or " + am.movie().getTitle() + " is not in the database.");
             return;
         }
         this.actsInMovies.put(am.hashCode(), am);
     }
 
     /**
-     * 
      * @param dm DirectorMovie relation
      */
     public void add(DirectorMovie dm) {
         if (directsMovies.containsKey(dm.hashCode())) {
-            System.out.println(dm.getDirector().getName() + " is already directing " + dm.getMovie().getTitle());
+            System.out.println(dm.director().getName() + " is already directing " + dm.movie().getTitle());
             return;
         }
 
-        if(!(directors.containsKey(dm.getDirector().getId()) && movies.containsKey(dm.getMovie().getId()))) {
-            System.out.println(dm.getDirector().getName() + " or " + dm.getMovie().getTitle() + " is not in the database.");
+        if (!(directors.containsKey(dm.director().getId()) && movies.containsKey(dm.movie().getId()))) {
+            System.out.println(dm.director().getName() + " or " + dm.movie().getTitle() + " is not in the database.");
             return;
         }
         this.directsMovies.put(dm.hashCode(), dm);

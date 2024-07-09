@@ -11,6 +11,12 @@ import tea.the.of.he.movies.entities.*;
 
 import tea.the.of.he.movies.Database;
 
+
+/**
+ * NOTE: This only unit tests the relevant getXByAttribute methods.
+ * Integration testing for the Movie/Actor network is done by {@link ProjektTester} either way,
+ * so there's some coverage there.
+ */
 public class SearchTest {
 
     /**
@@ -23,9 +29,11 @@ public class SearchTest {
         Database db = Database.getInstance();
 
         Actor actor1 = new Actor(0, "Actor 1");
-        Actor actor2 = new Actor(1, "actor 2"); //should match
+        Actor actor2 = new Actor(1, "actor 2"); // query should ignore case
         Actor actor3 = new Actor(2, "Actor 3");
         Actor actor4 = new Actor(3, "Schauspieler 4"); // should not match
+
+
 
 
         db.add(actor1);
@@ -33,7 +41,7 @@ public class SearchTest {
         db.add(actor3);
         db.add(actor4);
 
-        List<Actor> actors = db.getActorsByName("actor");
+        List<Actor> actors = db.getActorsByName("Actor");
         
         assertEquals(3, actors.size());
         assertTrue(actors.contains(actor1));

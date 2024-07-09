@@ -80,9 +80,16 @@ public class MovieDbReader {
         }
     }
 
-    // yeah duck unit testing here ya go have yer method public ya little shift
+    // yeah fuck unit testing here ya go have yer method public ya little shit
     /**
      * Creates an Actor object from a String.
+     * <br>
+     * Note that a line string is split at quotations. This is a teeny tiny bit (well actually a pretty big)
+     * Pfusch, but it works in this case, as there's no quotations within any Fields in the file.
+     * <br><br>
+     * 
+     * If was production code for an actually relevant project, you'd have to throw a CSV Reaer at it anyway,
+     * or at least split at a 3-character '","' combination.
      * 
      * @param line
      * @return Actor instance
